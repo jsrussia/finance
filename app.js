@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var MongoClient = require('mongodb').MongoClient;
 var app = express();
 
 app.set('view engine', 'jade');
@@ -11,38 +12,17 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.get('/', function(req, res) {
-  res.render('index');
+MongoClient.connect('mongodb://localhost:27017/finance', function(err, db) {
+
+  var sys = {
+    app : app,
+    db : db
+  };
+
+  var base      = new (require('./modules/base'))(sys);
+  var incomings = new (require('./modules/incomings'))(sys);
+
+  // db.close();
 });
 
-app.get('/incomings', function(req, res) {
-  var incomings = [
-    {
-      date : '25.06.2006',
-      sum  : 1600,
-      comment : 'No comments'
-    },
-    {
-      date : '27.06.2006',
-      sum  : 2400,
-      comment : 'No comments'
-    },
-    {
-      date : '30.06.2006',
-      sum  : 400,
-      comment : 'No comments'
-    },
-    {
-      date : '02.07.2006',
-      sum  : 4200,
-      comment : 'No comments'
-    }
-  ];
-  res.send(incomings);
-});
-
-app.post('/incomings', function(req, res) {
-  console.log(req.body);
-});
-
-app.listen(3000);
+app.listen(3000, function() { console.log('Server listening on port 3000') });
