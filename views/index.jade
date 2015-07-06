@@ -1,30 +1,73 @@
 doctype html
-html(ng-app='financeApp')
+html(ng-app="fnApp")
   head
-    link(rel='stylesheet', href='css/vendor/bootstrap.min.css')
+    link(rel="stylesheet", href="css/vendor/bootstrap.min.css")
     title Finance application
   body
-    div(class='container')
-      div(class='row fn-top-panel')
-        div(class='col-md-4 fn-logo')
+    div(class="container")
+      div(class="row fn-top-panel")
+        div(class="col-md-4 fn-logo")
           h1 Finance application
-        div(class='col-md-6')
-        div(class='col-md-2 fn-top-panel-user')
-          span(class='pull-right' style='margin-top:20px') Колесников Владислав
+        div(class="col-md-6")
+        div(class="col-md-2 fn-top-panel-user")
+          span(class="pull-right" style="margin-top:20px") Колесников Владислав
           br
-          button(type='button', class='btn btn-default pull-right') Выйти
-      ul(class='nav nav-tabs')
-        li(class='active')
-          a(href='#') Баланс
-        li
-          a(href='#') Приходы
-        li
-          a(href='#') Расходы
-        li
-          a(href='#') Кредиты
-        li
-          a(href='#') История
-      div(id='fn-page' style='margin-top:30px')
-        p Nothing here yet
-    script(src='js/vendor/angular.min.js')
-    script(src='js/vendor/jquery.min.js')
+          button(type="button", class="btn btn-default pull-right") Выйти
+
+      div(id="fn-tabs" ng-controller="TabsController as tab")
+
+        ul(id='fn-navs' class="nav nav-pills")
+          li(ng-class="{ active: tab.isSelected(1) }")
+            a(href ng-click="tab.selectTab(1)") Баланс
+          li(ng-class="{ active: tab.isSelected(2) }")
+            a(href ng-click="tab.selectTab(2)") Приходы
+          li(ng-class="{ active: tab.isSelected(3) }")
+            a(href ng-click="tab.selectTab(3)") Расходы
+          li(ng-class="{ active: tab.isSelected(4) }")
+            a(href ng-click="tab.selectTab(4)") Кредиты
+          li(ng-class="{ active: tab.isSelected(5) }")
+            a(href ng-click="tab.selectTab(5)") История
+
+        div(id="fn-pages" style="margin-top:50px;")
+
+          // БАЛАНС
+          div(class="fn-page" ng-show="tab.isSelected(1)")
+            h2 Баланс
+            p Информация о балансе
+
+          // ПРИХОДЫ
+          div(class="fn-page" id="fn-page-incomings" ng-show="tab.isSelected(2)" ng-controller="IncomingsController as incomings")
+            h2 Приходы
+            p {{ incomings.title }}
+            table(class='table table-hover')
+              thead
+                tr
+                  th Дата
+                  th Сумма
+                  th Комментарий
+              tr(ng-repeat="incoming in incomings.incomings")
+                td {{incoming.date}}
+                td {{incoming.sum}}
+                td {{incoming.comment}}
+
+            button(class="btn btn-primary") Добавить приход
+
+          // РАСХОДЫ
+          div(class="fn-page" ng-show="tab.isSelected(3)")
+            h2 Расходы
+            p Информация о расходах
+            button(class="btn btn-primary") Добавить расход
+
+          div(class="fn-page" ng-show="tab.isSelected(4)")
+            h2 Кредиты
+            p Информация о кредитах
+
+          div(class="fn-page" ng-show="tab.isSelected(5)")
+            h2 История
+            p История движения денежных средств
+
+
+
+    script(src="js/vendor/angular.min.js")
+    script(src="js/vendor/jquery.min.js")
+    script(src="js/app.js")
