@@ -1,0 +1,26 @@
+div(class="fn-page row" id="fn-page-incomings" ng-show="tab.isSelected(2)" ng-controller="IncomingsController as incomings")
+  div(class="col-md-12")
+    h2 Приходы
+    p(style="margin-bottom:30px") {{ incomings.title }}
+    table(class='table table-hover')
+      thead
+        tr
+          th Дата
+          th Сумма
+          th Комментарий
+      tr(ng-repeat="incoming in incomings.incomings")
+        td {{incoming.date}}
+        td {{incoming.sum}}
+        td {{incoming.comment}}
+  div(class="col-md-3")
+    form(name="incomingForm" ng-submit="incomingForm.$valid && incomings.addIncoming()" novalidate)
+      div(class="form-group")
+        label(for="incomingDate") Дата
+        input(type="text" id="incomingDate" class="form-control" ng-model="incomings.incoming.date" required)
+      div(class="form-group")
+        label(for="incomingSum") Сумма
+        input(type="number" id="incomingSum" class="form-control" ng-model="incomings.incoming.sum" required )
+      div(class="form-group")
+        label(for="incomingComment") Комментарий
+        textarea(id="incomingComment" class="form-control" ng-model="incomings.incoming.comment" required)
+      button(type="submit" class="btn btn-primary" ng-class="{ disabled : !incomingForm.$valid }") Добавить приход
