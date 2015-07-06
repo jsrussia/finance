@@ -27,6 +27,11 @@ fnApp.controller('IncomingsController', function() {
       date : '30.06.2006',
       sum  : 400,
       comment : 'No comments'
+    },
+    {
+      date : '02.07.2006',
+      sum  : 4200,
+      comment : 'No comments'
     }
   ]
 });
