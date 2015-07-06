@@ -1,4 +1,4 @@
-div(class="fn-page row" id="fn-page-incomings" ng-show="tab.isSelected(3)" ng-controller="SpendingsController as spendings")
+div(class="fn-page row" id="fn-page-ызутвштпы" ng-show="tab.isSelected(3)" ng-controller="SpendingsController as spendings")
   div(class="col-md-12")
     h2 Расходы
     p(style="margin-bottom:30px") {{ spendings.title }}
@@ -13,14 +13,14 @@ div(class="fn-page row" id="fn-page-incomings" ng-show="tab.isSelected(3)" ng-co
         td {{spending.sum}}
         td {{spending.comment}}
   div(class="col-md-3")
-    form
+    form(name="spendingForm" ng-submit="spendingForm.$valid && spendings.addSpending()" novalidate)
       div(class="form-group")
         label(for="spendingDate") Дата
-        input(type="text" id="spendingDate" class="form-control")
+        input(type="text" id="spendingDate" class="form-control" ng-model="spendings.spending.date" required)
       div(class="form-group")
         label(for="spendingSum") Сумма
-        input(type="text" id="spendingSum" class="form-control")
+        input(type="number" id="spendingSum" class="form-control" ng-model="spendings.spending.sum" required )
       div(class="form-group")
         label(for="spendingComment") Комментарий
-        textarea(id="spendingComment" class="form-control")
-    button(class="btn btn-primary") Добавить расход
+        textarea(id="spendingComment" class="form-control" ng-model="spendings.spending.comment" required)
+      button(type="submit" class="btn btn-primary" ng-class="{ disabled : !spendingForm.$valid }") Добавить расход

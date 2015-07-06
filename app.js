@@ -21,6 +21,8 @@ MongoClient.connect('mongodb://localhost:27017/finance', function(err, db) {
 
   var base      = new (require('./modules/base'))(sys);
   var incomings = new (require('./modules/incomings'))(sys);
+  var spendings = new (require('./modules/spendings'))(sys);
+  var balance   = new (require('./modules/balance'))(sys);
 
   // db.close();
 });

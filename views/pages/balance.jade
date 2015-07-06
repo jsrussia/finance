@@ -1,4 +1,4 @@
-div(class="fn-page row" ng-show="tab.isSelected(1)")
+div(class="fn-page row" ng-show="tab.isSelected(1)" ng-controller="BalanceController as balanceCtrl")
   div(class="col-md-12")
     h2 Баланс
-    p Информация о балансе
+    p Текущий баланс: {{ balanceCtrl.balance }}
