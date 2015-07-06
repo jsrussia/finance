@@ -33,6 +33,31 @@ fnApp.controller('IncomingsController', function() {
       sum  : 4200,
       comment : 'No comments'
     }
-  ]
+  ];
 });
 
+fnApp.controller('SpendingsController', function() {
+  this.title = 'Информация о расходах денежных средств';
+  this.spendings = [
+    {
+      date : '25.06.2006',
+      sum  : 1600,
+      comment : 'No comments'
+    },
+    {
+      date : '27.06.2006',
+      sum  : 2400,
+      comment : 'No comments'
+    },
+    {
+      date : '30.06.2006',
+      sum  : 400,
+      comment : 'No comments'
+    },
+    {
+      date : '02.07.2006',
+      sum  : 4200,
+      comment : 'No comments'
+    }
+  ];
+});
