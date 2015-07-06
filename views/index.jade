@@ -1,8 +1,30 @@
 doctype html
-html
+html(ng-app='financeApp')
   head
     link(rel='stylesheet', href='css/vendor/bootstrap.min.css')
     title Finance application
   body
     div(class='container')
-      h1 Finance application
+      div(class='row fn-top-panel')
+        div(class='col-md-4 fn-logo')
+          h1 Finance application
+        div(class='col-md-6')
+        div(class='col-md-2 fn-top-panel-user')
+          span(class='pull-right' style='margin-top:20px') Колесников Владислав
+          br
+          button(type='button', class='btn btn-default pull-right') Выйти
+      ul(class='nav nav-tabs')
+        li(class='active')
+          a(href='#') Баланс
+        li
+          a(href='#') Приходы
+        li
+          a(href='#') Расходы
+        li
+          a(href='#') Кредиты
+        li
+          a(href='#') История
+      div(id='fn-page' style='margin-top:30px')
+        p Nothing here yet
+    script(src='js/vendor/angular.min.js')
+    script(src='js/vendor/jquery.min.js')
