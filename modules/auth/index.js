@@ -8,6 +8,14 @@ Auth.prototype.router = function(app) {
     res.render('auth');
   });
 
+  app.post('/auth', function(req, res) {
+    if (req.body.password === 'admin' && req.body.username === 'admin') {
+      res.json({ success : true, sessionId : '12345' });
+    } else {
+      res.json({ success : false });
+    }
+  });
+
 };
 
 module.exports = Auth;

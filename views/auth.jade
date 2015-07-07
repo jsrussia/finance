@@ -8,11 +8,13 @@ html
       div(class="row fn-top-panel")
         div(class="col-md-4 fn-logo")
           h1 #{__('authorization')}
-      form(name="authorization")
+      form
         div(class="form-group")
-          label(for="incomingDate") #{__('username')}
-          input(type="text" class="form-control")
+          label(for="fn-auth-fields-username") #{__('username')}
+          input(type="text" class="form-control" id="fn-auth-fields-username")
         div(class="form-group")
-          label(for="incomingDate") #{__('password')}
-          input(type="text" class="form-control")
-        button(type="submit" class="btn btn-primary") #{__('signin')}
+          label(for="fn-auth-fields-password") #{__('password')}
+          input(type="text" class="form-control" id="fn-auth-fields-password")
+        button(class="btn btn-primary" id="fn-auth-buttons-signin") #{__('signin')}
+    script(type="text/javascript" src="js/vendor/jquery.min.js")
+    script(type="text/javascript" src="js/ui/auth.js")
