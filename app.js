@@ -19,6 +19,7 @@ MongoClient.connect('mongodb://localhost:27017/finance', function(err, db) {
   var sys = {
     app : app,
     db : db
+    config : require('./config.js')
   };
 
   var base      = new (require('./modules/base'))(sys);
