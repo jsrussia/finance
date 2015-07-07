@@ -1,4 +1,6 @@
 {
-  "authorization" : "Авторизация",
-  "signin" : "Вход"
+  "authorization": "Авторизация",
+  "signin": "Вход",
+  "username": "Имя пользователя",
+  "password": "Пароль"
 }

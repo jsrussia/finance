@@ -8,3 +8,11 @@ html
       div(class="row fn-top-panel")
         div(class="col-md-4 fn-logo")
           h1 #{__('authorization')}
+      form(name="authorization")
+        div(class="form-group")
+          label(for="incomingDate") #{__('username')}
+          input(type="text" class="form-control")
+        div(class="form-group")
+          label(for="incomingDate") #{__('password')}
+          input(type="text" class="form-control")
+        button(type="submit" class="btn btn-primary") #{__('signin')}
