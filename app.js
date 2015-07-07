@@ -1,11 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var MongoClient = require('mongodb').MongoClient;
-var app = express();
+var express      = require('express');
+var i18n         = require('./modules/i18n');
+var bodyParser   = require('body-parser');
+var MongoClient  = require('mongodb').MongoClient;
+var app          = express();
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
+app.use(i18n);
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -20,6 +22,7 @@ MongoClient.connect('mongodb://localhost:27017/finance', function(err, db) {
   };
 
   var base      = new (require('./modules/base'))(sys);
+  var auth      = new (require('./modules/auth'))(sys);
   var incomings = new (require('./modules/incomings'))(sys);
   var spendings = new (require('./modules/spendings'))(sys);
   var balance   = new (require('./modules/balance'))(sys);
