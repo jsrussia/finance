@@ -3,6 +3,7 @@ var i18n         = require('./modules/i18n');
 var bodyParser   = require('body-parser');
 var MongoClient  = require('mongodb').MongoClient;
 var app          = express();
+var config       = require('./config.js');
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
@@ -14,12 +15,12 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-MongoClient.connect('mongodb://localhost:27017/finance', function(err, db) {
+MongoClient.connect('mongodb://localhost:27017/' + config.dbname, function(err, db) {
 
   var sys = {
-    app : app,
-    db : db
-    config : require('./config.js')
+    app    : app,
+    db     : db,
+    config : config
   };
 
   var base      = new (require('./modules/base'))(sys);
@@ -28,7 +29,6 @@ MongoClient.connect('mongodb://localhost:27017/finance', function(err, db) {
   var spendings = new (require('./modules/spendings'))(sys);
   var balance   = new (require('./modules/balance'))(sys);
 
-  // db.close();
 });
 
-app.listen(3000, function() { console.log('Server listening on port 3000') });
+app.listen(config.port, function() { console.log('Server listening on port ' + config.port) });
